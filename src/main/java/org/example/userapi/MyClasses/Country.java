@@ -1,4 +1,4 @@
-package org.example.userapi;
+package org.example.userapi.MyClasses;
 
 public enum Country {
     Türkiye,

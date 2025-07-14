@@ -1,4 +1,4 @@
-package org.example.userapi;
+package org.example.userapi.MyClasses;
 
 import org.springframework.data.repository.CrudRepository;
 
