@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.*;
+
 @RestController
 @RequestMapping("/users-api/v1/users")
 public class ControllerAPI {
@@ -27,6 +29,19 @@ public class ControllerAPI {
     public Iterable<Users> getUsers() {
         return usersRepository.findAll();
     }
+
+    @GetMapping("additional-info/{age}")
+    public ResponseEntity<List<Users>> getUsersByAge(@PathVariable("age") Integer age) {
+        TreeSet<Users> users = new TreeSet<>(Comparator.comparing(Users::getFirstName));
+
+        for (Users user : usersRepository.findAll()) {
+            if (user.getAge().equals(age)) {
+                users.add(user);
+            }
+        }
+        return new ResponseEntity<>(new ArrayList<>(users), HttpStatus.OK);
+    }
+
 
     @PostMapping
     public ResponseEntity<Users> createUser(@RequestBody Users request) {
