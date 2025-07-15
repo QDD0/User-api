@@ -3,6 +3,7 @@ package org.example.userapi.MyClasses;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +14,10 @@ public class Users {
 
     @Enumerated(EnumType.STRING)
     private Country country;
+
+    public Country getCountry() {
+        return country;
+    }
 
     public Users(String firstName, Integer age, Country country) {
         this.firstName = firstName;
@@ -40,5 +45,6 @@ public class Users {
         this.age = age;
     }
 
-    public Users(){}
+    public Users() {
+    }
 }
